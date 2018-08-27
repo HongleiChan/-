@@ -8,12 +8,17 @@
       </el-tabs>
     </div><br/><br/>
     <div>
+      <train></train>
     </div>
   </div>
 </template>
 
 <script>
+  import Train from './components/Train'
   export default {
+    components:{
+      train:Train
+    },
     data() {
       return {
         activeName:'first'
