@@ -63,6 +63,8 @@
     methods: {
       onSubmit() {
         console.log('submit!');
+        this.$router.push('/Test/Rsult');
+        location.reload();
       }
     }
   }

@@ -11,6 +11,10 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
+      path:'/',
+      redirect: '/Train'
+    },
+    {
       path:'/Test',
       name:'Test',
       component: Test
