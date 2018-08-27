@@ -1,0 +1,70 @@
+<template>
+<div>
+  <el-header align="center"> <h2>结果</h2></el-header>
+  <div>
+    <schart :canvasId="canvasId"
+
+            :type="type"
+
+            :width="width"
+
+            :height="height"
+
+            :data="data"
+
+            :options="options"
+
+    >
+    </schart>
+  </div>
+</div>
+</template>
+
+<script>
+  import Schart from 'vue-schart'
+  export default {
+    data() {
+
+      return {
+
+        canvasId: 'myChart',
+
+        type: 'bar',
+
+        width: 600,
+
+        height: 500,
+
+        data: [
+
+          {name: '期刊', value: 1234},
+
+          {name: '图书', value: 2345},
+
+          {name: '小说', value: 2456},
+
+          {name: '文学', value: 333},
+
+        ],
+
+        options: {
+
+          title: 'example vue-schart'
+
+        }
+
+      }
+
+    },
+
+    components:{
+
+      Schart
+
+    }
+  }
+</script>
+
+<style>
+
+</style>

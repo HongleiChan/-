@@ -1,7 +1,7 @@
 <template>
   <div align="center">
     <el-form ref="form" :model="trian_form" label-width="100px" :label-position="labelPosition">
-      <el-form-item>
+      <el-form-item >
         模型选择:
         <el-select v-model="trian_form.region" placeholder="">
           <el-option label="SVM分类" value="SVM分类"></el-option>

@@ -6,7 +6,7 @@
     </p>
     <el-form ref="form" :model="propertest_form" label-width="80px" :label-position="labelPosition" >
       <el-form-item>
-        文档输入:
+        <p>文档输入:</p>
         <el-input  type="textarea" :rows="6" placeholder="请输入内容" v-model="propertest_form.content" style="width: 500px"
         ></el-input>
       </el-form-item>

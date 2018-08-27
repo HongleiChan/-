@@ -2,7 +2,7 @@
   <div>
     <el-header align="center"> <h1>文档分类</h1></el-header>
     <div>
-      <el-tabs  v-model="activeName" type="card"  @tab-click="handleClick" style="vertical-align: middle">
+      <el-tabs  v-model="activeName" type="card"  @tab-click="handleClick" class="tab">
         <el-tab-pane label="训练" name="Train">
           <keep-alive>
             <router-view></router-view>
@@ -47,5 +47,8 @@
 </script>
 
 <style>
-
+  .tab{
+    text-align: center;
+    vertical-align: center;
+  }
 </style>
