@@ -2,20 +2,18 @@
   <div>
     <el-header align="center"> <h1>文档分类</h1></el-header>
     <div>
-      <el-tabs  v-model="activeName" type="card"  @tab-click="handleClick" align="center" stretch="true">
+      <el-tabs  v-model="activeName" type="card"  @tab-click="handleClick"  stretch>
         <el-tab-pane label="训练" name="Train">
-          <keep-alive>
-            <router-view></router-view>
-          </keep-alive>
         </el-tab-pane>
         <el-tab-pane label="测试" name="Test" >
-          <keep-alive>
-            <router-view></router-view>
-          </keep-alive>
         </el-tab-pane>
       </el-tabs>
     </div>
-
+    <div>
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
+    </div>
   </div>
 </template>
 
