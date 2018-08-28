@@ -5,6 +5,8 @@ import Test from '@/components/Test'
 import BasicTest from '@/components/BasicTest'
 import ProperTest from '@/components/ProperTest'
 import Rsult from  '@/components/Rsult'
+import Cews from '@/components/Cews'
+import TextCNN from '@/components/TextCNN'
 
 Vue.use(Router)
 
@@ -28,16 +30,31 @@ export default new Router({
       path:'/Test/BasicTest',
       name:'BasicTest',
       component: BasicTest
-    },
+    },  
     {
       path:'/Test/ProperTest',
       name:'ProperTest',
       component: ProperTest
     },
     {
-      path:'/Test/Rsult',
-      name:'Rsult',
+      path:'/Test/ProperTest/Rsult',
+      name:'ProperRsult',
       component: Rsult
     },
+    {
+      path:'/Test/BasicTest/Rsult',
+      name:'BasicRsult',
+      component: Rsult
+    },
+    {
+      path:'/Test/ProperTest/cews',
+      name:'Cews',
+      component: Cews
+    },
+    {
+      path:'/Test/ProperTest/TextCNN',
+      name:'TextCNN',
+      component: TextCNN
+    }
   ]
 })

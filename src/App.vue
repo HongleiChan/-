@@ -47,8 +47,4 @@
 </script>
 
 <style>
-  .tab{
-    text-align: center;
-    vertical-align: center;
-  }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div >
-    <p style="margin-bottom: 20px">
+    <p style="margin-bottom: 20px" align="center">
       <router-link :to="{name:'BasicTest'}"><el-button size="medium">基本分类</el-button></router-link>
       <router-link :to="{name:'ProperTest'}"><el-button size="medium" >专属分类</el-button></router-link>
     </p>
@@ -63,10 +63,11 @@
     methods: {
       onSubmit() {
         console.log('submit!');
-        this.$router.push('/Test/Rsult');
+        this.$router.push('/Test/ProperTest/Rsult');
         location.reload();
       }
-    }
+    },
+
   }
 </script>
 

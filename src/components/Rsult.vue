@@ -2,8 +2,8 @@
   <div>
     <h2 align="center">结果显示</h2>
     <div>
-      <div id="myChart" :style="{width: '60%', height: '800px' ,float: 'left'}"></div>
-      <div style="width: 40%;height: 800px;float: right">
+      <div id="myChart" :style="{width: '60%', height: '600px' ,float: 'left'}"></div>
+      <div style="width: 40%;height: 600px;float: right">
         <el-table
           :data="tableData"
           border>
@@ -20,10 +20,15 @@
         </el-table>
        </div>
     </div>
-    <div style="margin-bottom: 0px">
+    <div style="margin-bottom: 0px" align="center">
       <router-link :to="{name:'BasicTest'}">
       <el-button type="primary">返回</el-button>
       </router-link>
+    </div>
+    <div v-show="chek" align="center" style="padding-top: 20px">
+      <router-link :to="{name:'Cews'}"><el-radio v-model="radio" label="1" border>cews二分类</el-radio></router-link>
+      <router-link :to="{name:'TextCNN'}"><el-radio v-model="radio" label="2" border>textCNN分类</el-radio></router-link>
+      <router-view></router-view>
     </div>
   </div>
 </template>
@@ -34,7 +39,7 @@
     data () {
       return {
         msg: 'xxxx',
-
+        radio:'',
         tableData: [{
           type:'时政',
           weight:'0.73352'
@@ -84,11 +89,20 @@
           },
           yAxis: {},
           series: [{
-            name: '权重',
+            name: '权重:',
             type: 'bar',
             data: [0.73352, 0.16103, 0.02762, 0.02484, 0.01567, 0.01498, 0.01413, 0.00562, 0.00219, 0.0004]
           }]
         });
+      }
+    },
+    computed:{
+      chek(){
+        var path = this.$route.path;
+        if(path == '/Test/ProperTest/Rsult'){
+          return true;
+        }
+        else return false;
       }
     }
   }
