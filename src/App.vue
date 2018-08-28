@@ -18,13 +18,7 @@
 </template>
 
 <script>
-  import Train from './components/Train'
-  import Test from './components/BasicTest'
   export default {
-    components:{
-      'train':Train,
-      'test':Test
-    },
     data() {
       return {
         activeName:'Train'
