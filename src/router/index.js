@@ -30,7 +30,7 @@ export default new Router({
       path:'/Test/BasicTest',
       name:'BasicTest',
       component: BasicTest
-    },  
+    },
     {
       path:'/Test/ProperTest',
       name:'ProperTest',
