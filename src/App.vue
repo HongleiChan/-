@@ -2,7 +2,7 @@
   <div>
     <el-header align="center"> <h1>文档分类</h1></el-header>
     <div>
-      <el-tabs  v-model="activeName" type="card"  @tab-click="handleClick" class="tab">
+      <el-tabs  v-model="activeName" type="card"  @tab-click="handleClick" align="center" stretch="true">
         <el-tab-pane label="训练" name="Train">
           <keep-alive>
             <router-view></router-view>

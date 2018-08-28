@@ -16,14 +16,14 @@
       </el-form-item>
       <el-form-item>
         分类需求:
-        <el-select v-model="propertest_form.demand" placeholder="">
+        <el-select v-model="propertest_form.demand" placeholder="" style="width: 300px;padding-left: 0px">
           <el-option label="涉黄" value="涉黄"></el-option>
           <el-option label="涉赌" value="涉毒"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item >
         分类选择:
-        <el-select v-model="propertest_form.selete" placeholder="">
+        <el-select v-model="propertest_form.selete" placeholder="" style="width: 300px;padding-left: 0px">
           <el-option label="分句" value="分句"></el-option>
           <el-option label="整文" value="整文"></el-option>
         </el-select>

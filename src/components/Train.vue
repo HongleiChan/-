@@ -3,7 +3,7 @@
     <el-form ref="form" :model="trian_form" label-width="100px" :label-position="labelPosition">
       <el-form-item >
         模型选择:
-        <el-select v-model="trian_form.region" placeholder="">
+        <el-select v-model="trian_form.region" placeholder="" style="width: 270px;padding-left: 0px">
           <el-option label="SVM分类" value="SVM分类"></el-option>
           <el-option label="SVM分句" value="SVM分句"></el-option>
           <el-option label="CNN分类" value="CNN分类"></el-option>
