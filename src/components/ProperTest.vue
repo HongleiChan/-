@@ -26,8 +26,7 @@
         模型选择:
         <el-checkbox-group v-model="propertest_form.moudle">
           <el-checkbox label="SVM分类" name="type"></el-checkbox>
-          <el-checkbox label="SVM分句" name="type"></el-checkbox>
-          <el-checkbox label="CNN分类" name="type"></el-checkbox><br/>
+          <el-checkbox label="CNN分类" name="type"></el-checkbox>
           <el-checkbox label="RNN分类" name="type"></el-checkbox>
           <el-checkbox label="NB分类" name="type"></el-checkbox>
           <el-checkbox label="MAX Entropy分类" name="type"></el-checkbox>

@@ -1,17 +1,10 @@
 <template>
   <div style="margin-top: 300px">
-    <h2 align="center">结果显示</h2>
-    <div v-show="chek1">
-      <div class="content">
-        <h3>分句结果：</h3>
-        {{content}}
-      </div>
-    </div>
     <div>
-      <div class="content">
-        <h3>文档分类结果：</h3>
-        <div id="myChart" :style="{width: '60%', height: '400px' ,float: 'left'}"></div>
-        <div style="width: 40%;height: 400px;float: right">
+      <div class="content" v-show="chek3">
+        <h3 >文档分类结果：</h3>
+        <div id="myChart" :style="{width: '60%', height: '300px' ,float: 'left'}"></div>
+        <div style="width: 40%;height: 300px;float: right">
           <el-table
             :data="tableData"
             border>
@@ -29,14 +22,15 @@
          </div>
       </div>
     </div>
-    <div>
-      <div class="content" v-show="chek">
-        <h3>涉黄检测结果：</h3>
+    <div v-show="chek1">
+      <div class="content">
+        <h3>分句结果：</h3>
+        {{content}}
       </div>
     </div>
     <div>
       <div class="content" v-show="chek">
-        <h3>涉赌检测结果：</h3>
+        <h3>内容审核结果：</h3>
       </div>
     </div>
     <div v-show="chek" align="center" style="padding-top: 20px">
@@ -123,6 +117,13 @@
       chek1(){
         if(this.selete == '分句')
           return true
+      },
+      chek3(){
+        var path = this.$route.path;
+        if(path == '/Test/ProperTest'){
+          return false;
+        }
+        else return true;
       }
     }
   }
@@ -133,10 +134,9 @@
    margin-right: auto;
    margin-left: auto;
    width: 80%;
-   height: 500px;
-   border: darkgray solid 1px;
+   height: 400px;
    overflow: hidden;
-   overflow-x:hidden;
+   border: black solid 1px;
    font-size: 18px;
  }
 </style>
