@@ -4,7 +4,8 @@
       <router-link :to="{name:'BasicTest'}"><el-radio v-model="radio" size="medium" label="1" border>基本分类</el-radio></router-link>
       <router-link :to="{name:'ProperTest'}"><el-radio v-model="radio" size="medium" label="2" border>专属分类</el-radio></router-link>
     </p>
-    <el-form ref="form" :model="propertest_form" label-width="80px" :label-position="labelPosition" align="center">
+    <el-form ref="form" :model="propertest_form" label-width="80px" :label-position="labelPosition" align="center"
+    >
       <el-form-item>
         <p>文档输入:</p>
         <el-input  type="textarea" :rows="6" placeholder="请输入内容" v-model="propertest_form.content" style="width: 500px"
@@ -13,13 +14,6 @@
       <el-form-item>
         任务名称:
         <el-input type="text" v-model="propertest_form.name" style="width: 300px;padding-left: 0px" clearable></el-input>
-      </el-form-item>
-      <el-form-item>
-        分类需求:
-        <el-select v-model="propertest_form.demand" placeholder="" style="width: 300px;padding-left: 0px">
-          <el-option label="涉黄" value="涉黄"></el-option>
-          <el-option label="涉赌" value="涉毒"></el-option>
-        </el-select>
       </el-form-item>
       <el-form-item >
         分类选择:
@@ -49,8 +43,9 @@
   </div>
 </template>
 
-<script>
+<script type="text/javascript">
   import Rsult from './Rsult'
+
   export default {
     components:{
       'rsult':Rsult
@@ -62,7 +57,6 @@
         propertest_form: {
           content: '',
           name:'',
-          demand:'',
           selete:'',
           moudle: []
         }
@@ -71,10 +65,10 @@
     methods: {
       onSubmit() {
         console.log('submit!');
-        location.reload();
+        //location.reload();
+        console.log(this.propertest_form)
       }
-    },
-
+    }
   }
 </script>
 

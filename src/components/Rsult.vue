@@ -10,8 +10,8 @@
     <div>
       <div class="content">
         <h3>文档分类结果：</h3>
-        <div id="myChart" :style="{width: '60%', height: '300px' ,float: 'left'}"></div>
-        <div style="width: 40%;height: 300px;float: right">
+        <div id="myChart" :style="{width: '60%', height: '400px' ,float: 'left'}"></div>
+        <div style="width: 40%;height: 400px;float: right">
           <el-table
             :data="tableData"
             border>
@@ -117,7 +117,7 @@
    margin-right: auto;
    margin-left: auto;
    width: 80%;
-   height: 400px;
+   height: 500px;
    border: darkgray solid 1px;
    overflow: hidden;
    overflow-x:hidden;

@@ -36,16 +36,6 @@ export default new Router({
       component: ProperTest
     },
     {
-      path:'/Test/ProperTest/Rsult',
-      name:'ProperRsult',
-      component: Rsult
-    },
-    {
-      path:'/Test/BasicTest/Rsult',
-      name:'BasicRsult',
-      component: Rsult
-    },
-    {
       path:'/Test/ProperTest/cews',
       name:'Cews',
       component: Cews
