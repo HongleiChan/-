@@ -1,7 +1,7 @@
 <template>
   <div style="margin-top: 300px">
     <h2 align="center">结果显示</h2>
-    <div v-show="chek"  >
+    <div v-show="chek1">
       <div class="content">
         <h3>分句结果：</h3>
         {{content}}
@@ -40,8 +40,12 @@
       </div>
     </div>
     <div v-show="chek" align="center" style="padding-top: 20px">
-      <el-radio v-model="radio" label="1"  border>cews二分类</el-radio>
-      <el-radio v-model="radio" label="2"  border>textCNN分类</el-radio>
+      <el-tabs v-model="activeName" type="border-card" @tab-click="handleClick" stretch style="width: 80%">
+        <el-tab-pane label="Cews二分类" name="first"><cews></cews></el-tab-pane>
+        <el-tab-pane label="TextCNN分类" name="second"><textCNN></textCNN></el-tab-pane>
+      </el-tabs>
+    </div>
+    <div v-html="message">
     </div>
   </div>
 </template>
@@ -50,6 +54,9 @@
   import Cews from './Cews'
   import TextCNN from './TextCNN'
   export default {
+    props:{
+      selete:String
+    },
     components:{
       'cews':Cews,
       'textCNN':TextCNN
@@ -57,6 +64,8 @@
     name: 'hello',
     data () {
       return {
+        activeName: 'first',
+        message:'',
         content:'',
         msg: 'xxxx',
         radio:'',
@@ -98,6 +107,9 @@
             data: [0.73352, 0.16103, 0.02762, 0.02484, 0.01567, 0.01498, 0.01413, 0.00562, 0.00219, 0.0004]
           }]
         });
+      },
+      handleClick(tab, event) {
+        console.log(tab, event);
       }
     },
     computed:{
@@ -107,6 +119,10 @@
           return true;
         }
         else return false;
+      },
+      chek1(){
+        if(this.selete == '分句')
+          return true
       }
     }
   }

@@ -1,11 +1,5 @@
 <template>
   <div align="center">
-    <h2 align="center">结果显示</h2>
-    <div align="center" style="padding-top: 20px">
-      <router-link :to="{name:'Cews'}"><el-radio v-model="radio" label="1" border>cews二分类</el-radio></router-link>
-      <router-link :to="{name:'TextCNN'}"><el-radio v-model="radio" label="2" border>textCNN分类</el-radio></router-link>
-      <router-view></router-view>
-    </div>
     <div>
       <div style="width: 100%;height: 600px;float: right">
         <el-table
@@ -23,11 +17,6 @@
           </el-table-column>
         </el-table>
       </div>
-    </div>
-    <div style="margin-bottom: 0px">
-      <router-link :to="{name:'ProperRsult'}">
-        <el-button type="primary">返回</el-button>
-      </router-link>
     </div>
   </div>
 </template>

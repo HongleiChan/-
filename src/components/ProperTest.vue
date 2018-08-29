@@ -38,7 +38,7 @@
       </el-form-item>
     </el-form>
     <div>
-      <rsult></rsult>
+      <rsult :selete="propertest_form.selete"></rsult>
     </div>
   </div>
 </template>
