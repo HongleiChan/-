@@ -1,8 +1,8 @@
 <template>
   <div>
     <p style="margin-bottom: 20px" align="center">
-      <router-link :to="{name:'BasicTest'}"><el-button size="medium">基本分类</el-button></router-link>
-      <router-link :to="{name:'ProperTest'}"><el-button size="medium" >专属分类</el-button></router-link>
+      <router-link :to="{name:'BasicTest'}"><el-radio v-model="radio" size="medium" label="1" border>基本分类</el-radio></router-link>
+      <router-link :to="{name:'ProperTest'}"><el-radio v-model="radio" size="medium" label="2" border>专属分类</el-radio></router-link>
     </p>
     <el-form ref="form" :model="basictest_form" label-width="80px" :label-position="labelPosition"  align="center">
       <el-form-item>
@@ -36,6 +36,7 @@
   export default {
     data() {
       return {
+        radio:'1',
         labelPosition:'top',
         basictest_form: {
           content: '',
