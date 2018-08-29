@@ -2,6 +2,12 @@
   <div>
     <h2 align="center">结果显示</h2>
     <div>
+      <div v-show="chek">
+        <p>文章：</p>
+        <div class="content">
+          {{content}}
+        </div>
+      </div>
       <div id="myChart" :style="{width: '60%', height: '600px' ,float: 'left'}"></div>
       <div style="width: 40%;height: 600px;float: right">
         <el-table
@@ -9,67 +15,53 @@
           border>
           <el-table-column
             prop="type"
-            label="类别"
+            label="模型"
             width="180">
           </el-table-column>
           <el-table-column
             prop="weight"
-            label="权重"
+            label="结果"
             width="180">
           </el-table-column>
         </el-table>
        </div>
     </div>
-    <div style="margin-bottom: 0px" align="center">
-      <router-link :to="{name:'BasicTest'}">
-      <el-button type="primary">返回</el-button>
-      </router-link>
-    </div>
     <div v-show="chek" align="center" style="padding-top: 20px">
-      <router-link :to="{name:'Cews'}"><el-radio v-model="radio" label="1" border>cews二分类</el-radio></router-link>
-      <router-link :to="{name:'TextCNN'}"><el-radio v-model="radio" label="2" border>textCNN分类</el-radio></router-link>
-      <router-view></router-view>
+      <el-radio v-model="radio" label="1"  border>cews二分类</el-radio>
+      <el-radio v-model="radio" label="2"  border>textCNN分类</el-radio>
     </div>
   </div>
 </template>
 
 <script>
+  import Cews from './Cews'
+  import TextCNN from './TextCNN'
   export default {
+    components:{
+      'cews':Cews,
+      'textCNN':TextCNN
+    },
     name: 'hello',
     data () {
       return {
+        content:'',
         msg: 'xxxx',
         radio:'',
         tableData: [{
-          type:'时政',
-          weight:'0.73352'
+          type:'SVM分类',
+          weight:'0'
         }, {
-          type:'房产',
-          weight:'0.16103'
+          type:'CNN分类',
+          weight:'0'
         }, {
-          type:'科技',
-          weight:'0.02762'
+          type:'RNN分类',
+          weight:'0'
         }, {
-          type:'教育',
-          weight:'0.02484'
+          type:'NB分类',
+          weight:'0'
         }, {
-          type:'游戏',
-          weight:'0.01567'
-        }, {
-          type:'家居',
-          weight:'0.01498'
-        }, {
-          type:'财经',
-          weight:'0.01413'
-        }, {
-          type:'娱乐',
-          weight:'0.00562'
-        }, {
-          type:'时尚',
-          weight:'0.00219'
-        }, {
-          type:'体育',
-          weight:'0.0004'
+          type:'MAX Entropy分类',
+          weight:'0'
         }],
       }
     },
@@ -99,7 +91,7 @@
     computed:{
       chek(){
         var path = this.$route.path;
-        if(path == '/Test/ProperTest/Rsult'){
+        if(path == '/Test/ProperTest'){
           return true;
         }
         else return false;
@@ -109,5 +101,12 @@
 </script>
 
 <style>
- 
+ .content{
+   width: 100%;
+   height: 300px;
+   border: darkgray solid 1px;
+   overflow: scroll;
+   overflow-x:hidden;
+   font-size: 18px
+ }
 </style>

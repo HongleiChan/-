@@ -43,11 +43,18 @@
         <el-button type="primary" @click="onSubmit">提交</el-button>
       </el-form-item>
     </el-form>
+    <div>
+      <rsult></rsult>
+    </div>
   </div>
 </template>
 
 <script>
+  import Rsult from './Rsult'
   export default {
+    components:{
+      'rsult':Rsult
+    },
     data() {
       return {
         radio:'2',
@@ -64,7 +71,6 @@
     methods: {
       onSubmit() {
         console.log('submit!');
-        this.$router.push('/Test/ProperTest/Rsult');
         location.reload();
       }
     },
