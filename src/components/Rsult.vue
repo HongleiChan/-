@@ -1,5 +1,6 @@
 <template>
   <div style="margin-top: 300px">
+    <h2 align="center">结果显示</h2>
     <div>
       <div class="content" v-show="chek3">
         <h3 >文档分类结果：</h3>

@@ -1,5 +1,5 @@
 <template>
-  <div align="center">
+  <div >
     <p style="margin-bottom: 20px" align="center">
       <router-link :to="{name:'BasicTest'}"><el-radio v-model="radio" size="medium" label="1" border>基本分类</el-radio></router-link>
       <router-link :to="{name:'ProperTest'}"><el-radio v-model="radio" size="medium" label="2" border>专属分类</el-radio></router-link>
