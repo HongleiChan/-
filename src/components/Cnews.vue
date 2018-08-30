@@ -1,6 +1,6 @@
 <template>
   <div align="center">
-    <div class="contentkid">
+    <div>
       <div>
         <el-table
           :data="tableData"

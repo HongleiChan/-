@@ -1,12 +1,12 @@
 <template>
   <div style="margin-top: 300px">
     <h2 align="center">结果显示</h2>
-    <div>
+    <div  class="space">
       <div class="content" v-show="chek3">
-        <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;文档分类结果：</h3>
         <div class="contentkid">
+        <h3>文档分类结果：</h3>
           <div id="myChart" class="chart"></div>
-          <div style="width: 40%;height: 250px;float: right">
+          <div class="table">
             <el-table
               :data="tableData"
               border>
@@ -27,20 +27,20 @@
     </div>
     <div v-show="chek1">
       <div class="content">
-        <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分句检测结果：</h3>
         <div class="contentkid">
+        <h3>分句检测结果：</h3>
           {{content}}
         </div>
       </div>
     </div>
-    <div style="padding-top: 20px">
+    <div  class="space">
       <div class="content" v-show="chek2" >
-        <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;文档检测结果：</h3>
         <div class="contentkid">
+        <h3>文档检测结果：</h3>
         <div>
           <div id="meChart" class="chart"></div>
         </div>
-          <div style="width: 40%;height: 250px;float: right">
+          <div class="table">
             <el-table
               :data="tableData"
               border>
@@ -59,16 +59,20 @@
         </div>
       </div>
     </div>
-    <div v-show="chek" style="padding-top: 20px">
+    <div v-show="chek"  class="space">
       <div class="content">
-        <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cnews二分类：</h3>
-        <cnews></cnews>
+        <div class="contentkid">
+          <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cnews二分类：</h3>
+          <cnews></cnews>
+        </div>
       </div>
     </div>
-    <div v-show="chek" style="padding-top: 20px;padding-bottom: 50px">
+    <div v-show="chek" class="space">
       <div class="content">
-        <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;textCNN分类：</h3>
-        <textCNN></textCNN>
+        <div class="contentkid">
+          <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;textCNN分类：</h3>
+          <textCNN></textCNN>
+        </div>
       </div>
     </div>
     <div v-html="message">
@@ -200,11 +204,14 @@
    height: 80%;
  }
   .space{
-    padding-top: 20px;
+    padding-top: 20px;padding-bottom: 30px
   }
   .chart{
     width: 800px;
-    height: 250px;
+    height: 300px;
     float: left;
+  }
+  .table{
+    width: 40%;height: 250px;float: right
   }
 </style>

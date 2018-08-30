@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="contentkid">
+    <div>
       <div style="width: 50%;border: black;float: left">
         AI平台textCNN:
         <el-button type="primary" size="small">点击获取</el-button>
