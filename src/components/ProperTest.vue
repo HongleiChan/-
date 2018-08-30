@@ -63,6 +63,7 @@
     methods: {
       onSubmit() {
         console.log('submit!');
+        scroll(0,1000);
         //location.reload();
         console.log(this.propertest_form)
       }

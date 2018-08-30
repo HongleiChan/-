@@ -54,6 +54,7 @@
     methods: {
       onSubmit() {
         console.log('submit!');
+        scroll(0,1000);
       }
     }
   }
