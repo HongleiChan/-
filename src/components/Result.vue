@@ -1,10 +1,10 @@
 <template>
-  <div style="margin-top: 300px">
+  <div>
 
     <div  class="space">
       <div class="content" v-show="chek3">
         <div class="contentkid">
-          <h3>文档分类结果</h3>
+          <h3>文档分类结果：</h3>
           <div id="myChart" class="chart"></div>
           <div class="table">
             <el-table
@@ -23,8 +23,8 @@
             </el-table>
           </div>
         </div>
+        </div>
       </div>
-    </div>
 
     <div  class="space">
       <div v-show="chek">
