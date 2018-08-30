@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-header align="center"> <h1>文档分类</h1></el-header>
+    <el-header> <h1  align="center">文档分类</h1></el-header>
     <div>
       <el-tabs  v-model="activeName" type="card"  @tab-click="handleClick"  stretch>
         <el-tab-pane label="训练" name="Train">

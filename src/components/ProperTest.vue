@@ -1,11 +1,10 @@
 <template>
-  <div >
+  <div  align="center">
     <p style="margin-bottom: 20px" align="center">
       <router-link :to="{name:'BasicTest'}"><el-radio v-model="radio" size="medium" label="1" border>基本分类</el-radio></router-link>
       <router-link :to="{name:'ProperTest'}"><el-radio v-model="radio" size="medium" label="2" border>专属分类</el-radio></router-link>
     </p>
-    <el-form ref="form" :model="propertest_form" label-width="80px" :label-position="labelPosition" align="center"
-    >
+    <el-form ref="form" :model="propertest_form" label-width="80px" :label-position="labelPosition" align="center">
       <el-form-item>
         <p>文档输入:</p>
         <el-input  type="textarea" :rows="6" placeholder="请输入内容" v-model="propertest_form.content" style="width: 500px"
