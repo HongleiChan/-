@@ -10,7 +10,7 @@
         <div align="center">
           <el-form-item>
             <p>文档输入:</p>
-            <el-input  type="textarea" :rows="9" placeholder="请输入内容" v-model="propertest_form.content" style="width: 60%"
+            <el-input  type="textarea" :rows="9" placeholder="请输入内容" v-model="propertest_form.content" style="width: 80%"
             ></el-input>
           </el-form-item>
           <el-form-item>
