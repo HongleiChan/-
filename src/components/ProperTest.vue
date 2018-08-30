@@ -4,6 +4,7 @@
       <router-link :to="{name:'BasicTest'}"><el-radio v-model="radio" size="medium" label="1" border>基本分类</el-radio></router-link>
       <router-link :to="{name:'ProperTest'}"><el-radio v-model="radio" size="medium" label="2" border>专属分类</el-radio></router-link>
     </p>
+
     <div align="center">
       <el-form ref="form" :model="propertest_form" label-width="80px" :label-position="labelPosition" align="center">
         <el-form-item>
@@ -33,9 +34,11 @@
         </el-form-item>
       </el-form>
     </div>
+
     <div>
       <result :selete="propertest_form.selete"></result>
     </div>
+
   </div>
 </template>
 

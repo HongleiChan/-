@@ -1,5 +1,6 @@
 <template>
   <div align="center">
+
     <div>
       <div>
         <el-table
@@ -18,6 +19,7 @@
         </el-table>
       </div>
     </div>
+
   </div>
 </template>
 

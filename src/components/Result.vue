@@ -1,45 +1,11 @@
 <template>
   <div style="margin-top: 300px">
-    <h2 align="center">结果显示</h2>
+
     <div  class="space">
       <div class="content" v-show="chek3">
         <div class="contentkid">
-        <h3>文档分类结果：</h3>
+          <h3>文档分类结果</h3>
           <div id="myChart" class="chart"></div>
-          <div class="table">
-            <el-table
-              :data="tableData"
-              border>
-              <el-table-column
-                prop="type"
-                label="模型"
-                width="180">
-              </el-table-column>
-              <el-table-column
-                prop="weight"
-                label="结果"
-                width="180">
-              </el-table-column>
-            </el-table>
-           </div>
-        </div>
-      </div>
-    </div>
-    <div v-show="chek1">
-      <div class="content">
-        <div class="contentkid">
-        <h3>分句检测结果：</h3>
-          {{content}}
-        </div>
-      </div>
-    </div>
-    <div  class="space">
-      <div class="content" v-show="chek2" >
-        <div class="contentkid">
-        <h3>文档检测结果：</h3>
-        <div>
-          <div id="meChart" class="chart"></div>
-        </div>
           <div class="table">
             <el-table
               :data="tableData"
@@ -59,6 +25,59 @@
         </div>
       </div>
     </div>
+
+    <div  class="space">
+      <div v-show="chek">
+        <div class="content">
+          <div class="contentkid">
+            <h3>内容检测结果：</h3>
+              <div v-show="chek1">
+                {{content}}
+              </div>
+
+              <div v-show="chek2">
+                <div>
+                  <div id="meChart" class="chart"></div>
+                </div>
+                <div class="table">
+                  <el-table
+                    :data="tableData"
+                    border>
+                    <el-table-column
+                      prop="type"
+                      label="模型"
+                      width="180">
+                    </el-table-column>
+                    <el-table-column
+                      prop="weight"
+                      label="结果"
+                      width="180">
+                    </el-table-column>
+                  </el-table>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--<div v-show="chek1">-->
+      <!--<div class="content">-->
+        <!--<div class="contentkid">-->
+        <!--<h3>分句检测结果：</h3>-->
+          <!--{{content}}-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+
+    <div  class="space">
+      <div class="content" v-show="chek2" >
+        <div class="contentkid">
+        <h3>文档检测结果：</h3>
+        </div>
+      </div>
+    </div>
+
     <div v-show="chek"  class="space">
       <div class="content">
         <div class="contentkid">
@@ -67,6 +86,7 @@
         </div>
       </div>
     </div>
+
     <div v-show="chek" class="space">
       <div class="content">
         <div class="contentkid">
@@ -75,8 +95,7 @@
         </div>
       </div>
     </div>
-    <div v-html="message">
-    </div>
+
   </div>
 </template>
 
@@ -95,7 +114,6 @@
     data () {
       return {
         activeName: 'first',
-        message:'',
         content:'高亮显示',
         msg: 'xxxx',
         radio:'',
