@@ -81,7 +81,7 @@
     <div v-show="chek"  class="space">
       <div class="content">
         <div class="contentkid">
-          <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cnews二分类：</h3>
+          <h3>Cnews二分类：</h3>
           <cnews></cnews>
         </div>
       </div>
@@ -90,7 +90,7 @@
     <div v-show="chek" class="space">
       <div class="content">
         <div class="contentkid">
-          <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;textCNN分类：</h3>
+          <h3>textCNN分类：</h3>
           <textCNN></textCNN>
         </div>
       </div>
