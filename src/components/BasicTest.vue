@@ -29,16 +29,16 @@
       </el-form-item>
     </el-form>
     <div>
-      <rsult></rsult>
+      <result></result>
     </div>
   </div>
 </template>
 
 <script>
-  import Rsult from './Rsult'
+  import Result from './Result'
   export default {
     components:{
-      'rsult':Rsult
+      'result':Result
     },
     data() {
       return {
@@ -54,7 +54,6 @@
     methods: {
       onSubmit() {
         console.log('submit!');
-        location.reload();
       }
     }
   }

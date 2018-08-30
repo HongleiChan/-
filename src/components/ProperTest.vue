@@ -36,17 +36,17 @@
       </el-form-item>
     </el-form>
     <div>
-      <rsult :selete="propertest_form.selete"></rsult>
+      <result :selete="propertest_form.selete"></result>
     </div>
   </div>
 </template>
 
 <script type="text/javascript">
-  import Rsult from './Rsult'
+  import Result from './Result'
 
   export default {
     components:{
-      'rsult':Rsult
+      'result':Result
     },
     data() {
       return {

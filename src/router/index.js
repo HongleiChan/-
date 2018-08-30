@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import Train from '@/components/Train'
 import BasicTest from '@/components/BasicTest'
 import ProperTest from '@/components/ProperTest'
-import Rsult from  '@/components/Rsult'
 import Cews from '@/components/Cews'
 import TextCNN from '@/components/TextCNN'
 
