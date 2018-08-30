@@ -9,7 +9,7 @@
       <el-form ref="form" :model="basictest_form" label-width="80px" :label-position="labelPosition" >
         <el-form-item>
           <p>文档输入:</p>
-          <el-input  type="textarea" :rows="9" placeholder="请输入内容" v-model="basictest_form.content" style="width: 80% "
+          <el-input  type="textarea" :rows="9" placeholder="请输入内容" v-model="basictest_form.content" style="width: 60% "
           ></el-input>
         </el-form-item>
         <el-form-item>
@@ -33,17 +33,17 @@
     </div>
 
     <div>
-      <result></result>
+      <basic-result></basic-result>
     </div>
 
   </div>
 </template>
 
 <script>
-  import Result from './Result'
+  import BasicResult from './BasicResult'
   export default {
     components:{
-      'result':Result
+      'basic-result':BasicResult
     },
     data() {
       return {
