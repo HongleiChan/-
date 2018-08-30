@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div >
     <el-header> <h1  align="center">文档分类</h1></el-header>
     <div>
       <el-tabs  v-model="activeName" type="card"  @tab-click="handleClick"  stretch>

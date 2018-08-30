@@ -3,42 +3,73 @@
     <h2 align="center">结果显示</h2>
     <div>
       <div class="content" v-show="chek3">
-        <h3 >文档分类结果：</h3>
-        <div id="myChart" :style="{width: '60%', height: '300px' ,float: 'left'}"></div>
-        <div style="width: 40%;height: 300px;float: right">
-          <el-table
-            :data="tableData"
-            border>
-            <el-table-column
-              prop="type"
-              label="模型"
-              width="180">
-            </el-table-column>
-            <el-table-column
-              prop="weight"
-              label="结果"
-              width="180">
-            </el-table-column>
-          </el-table>
-         </div>
+        <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;文档分类结果：</h3>
+        <div class="contentkid">
+          <div id="myChart" class="chart"></div>
+          <div style="width: 40%;height: 250px;float: right">
+            <el-table
+              :data="tableData"
+              border>
+              <el-table-column
+                prop="type"
+                label="模型"
+                width="180">
+              </el-table-column>
+              <el-table-column
+                prop="weight"
+                label="结果"
+                width="180">
+              </el-table-column>
+            </el-table>
+           </div>
+        </div>
       </div>
     </div>
     <div v-show="chek1">
       <div class="content">
-        <h3>分句结果：</h3>
-        {{content}}
+        <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分句检测结果：</h3>
+        <div class="contentkid">
+          {{content}}
+        </div>
       </div>
     </div>
-    <div>
-      <div class="content" v-show="chek">
-        <h3>内容审核结果：</h3>
+    <div style="padding-top: 20px">
+      <div class="content" v-show="chek2" >
+        <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;文档检测结果：</h3>
+        <div class="contentkid">
+        <div>
+          <div id="meChart" class="chart"></div>
+        </div>
+          <div style="width: 40%;height: 250px;float: right">
+            <el-table
+              :data="tableData"
+              border>
+              <el-table-column
+                prop="type"
+                label="模型"
+                width="180">
+              </el-table-column>
+              <el-table-column
+                prop="weight"
+                label="结果"
+                width="180">
+              </el-table-column>
+            </el-table>
+          </div>
+        </div>
       </div>
     </div>
-    <div v-show="chek" align="center" style="padding-top: 20px">
-      <el-tabs v-model="activeName" type="border-card" @tab-click="handleClick" stretch style="width: 80%">
-        <el-tab-pane label="Cews二分类" name="first"><cews></cews></el-tab-pane>
-        <el-tab-pane label="TextCNN分类" name="second"><textCNN></textCNN></el-tab-pane>
-      </el-tabs>
+    <div v-show="chek" style="padding-top: 20px">
+      <div class="content">
+        <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cnews二分类：</h3>
+        <cnews></cnews>
+      </div>
+    </div>
+    <div v-show="chek" style="padding-top: 20px;padding-bottom: 50px">
+      <div class="content">
+        <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;textCNN分类：</h3>
+        <textCNN></textCNN>
+      </div>
     </div>
     <div v-html="message">
     </div>
@@ -46,14 +77,14 @@
 </template>
 
 <script>
-  import Cews from './Cews'
+  import Cnews from './Cnews'
   import TextCNN from './TextCNN'
   export default {
     props:{
       selete:String
     },
     components:{
-      'cews':Cews,
+      'cnews':Cnews,
       'textCNN':TextCNN
     },
     name: 'hello',
@@ -61,7 +92,7 @@
       return {
         activeName: 'first',
         message:'',
-        content:'',
+        content:'高亮显示',
         msg: 'xxxx',
         radio:'',
         tableData: [{
@@ -84,6 +115,7 @@
     },
     mounted(){
       this.drawLine();
+      this.drawLine1();
     },
     methods: {
       drawLine(){
@@ -91,6 +123,22 @@
         let myChart = this.$echarts.init(document.getElementById('myChart'));
         // 绘制图表
         myChart.setOption({
+          tooltip: {},
+          xAxis: {
+            data: ["时政","房产","科技","教育","游戏","家居","财经","娱乐","时尚","体育"]
+          },
+          yAxis: {},
+          series: [{
+            name: '权重:',
+            type: 'bar',
+            data: [0.73352, 0.16103, 0.02762, 0.02484, 0.01567, 0.01498, 0.01413, 0.00562, 0.00219, 0.0004]
+          }]
+        });
+      },
+      drawLine1(){
+        let meChart = this.$echarts.init(document.getElementById('meChart'));
+
+        meChart.setOption({
           tooltip: {},
           xAxis: {
             data: ["时政","房产","科技","教育","游戏","家居","财经","娱乐","时尚","体育"]
@@ -119,6 +167,10 @@
         if(this.selete == '分句')
           return true
       },
+      chek2(){
+        if(this.selete == '文档')
+          return true
+      },
       chek3(){
         var path = this.$route.path;
         if(path == '/Test/ProperTest'){
@@ -130,14 +182,29 @@
   }
 </script>
 
-<style>
+<style lang="css">
  .content{
    margin-right: auto;
    margin-left: auto;
    width: 80%;
    height: 400px;
    overflow: hidden;
+   border-radius: 15px;
    border: black solid 1px;
    font-size: 18px;
+  }
+ .contentkid{
+   margin-right: auto;
+   margin-left: auto;
+   width: 95%;
+   height: 80%;
  }
+  .space{
+    padding-top: 20px;
+  }
+  .chart{
+    width: 800px;
+    height: 250px;
+    float: left;
+  }
 </style>

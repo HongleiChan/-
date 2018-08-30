@@ -1,18 +1,16 @@
 <template>
   <div>
-    <div style="padding-top: 20px">
-      <div style="width: 40%;height: auto;border: black;float: left">
-        <p style="float:left;">AI平台textCNN:</p>
-        <el-button type="primary" style="float:right;margin-right: 50%">点击获取</el-button>
+    <div class="contentkid">
+      <div style="width: 50%;border: black;float: left">
+        AI平台textCNN:
+        <el-button type="primary" size="small">点击获取</el-button>
       </div>
-      <div style="width: 40%;height: auto;border: black;float: right">
-        <p style="float:left;">增加数据集后textCNN:</p>
-        <el-button type="primary" style="float:right;margin-right: 50%">点击获取</el-button>
+      <div style="width: 50%;border: black;float: right ">
+        增加数据集后textCNN:
+        <el-button type="primary" size="small">点击获取</el-button>
       </div>
-    </div>
-    <div>
-    <div class="res" style="float: left"></div>
-    <div class="res" style="float: right"></div>
+      <div class="res" style="float: left;">111111111111</div>
+      <div class="res" style="float: right"></div>
     </div>
   </div>
 </template>
@@ -21,7 +19,6 @@
 export default {
   data(){
     return{
-      radio:'2'
     }
   }
 }
@@ -30,7 +27,9 @@ export default {
 <style lang="css">
  .res{
    width: 49%;
-   height: 500px;
+   height: 270px;
+   overflow: scroll;
+   overflow-x: hidden;
    border:1px solid black;
  }
 </style>
