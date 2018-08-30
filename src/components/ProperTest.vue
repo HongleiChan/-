@@ -17,7 +17,7 @@
             <el-button type="primary" @click="onSubmit">提交</el-button>
           </el-form-item>
         </div>
-
+        
         <div class="space">
           <div class="inputcontent">
             <div class="contentkid">
