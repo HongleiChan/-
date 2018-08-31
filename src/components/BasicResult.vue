@@ -31,9 +31,6 @@
   import Cnews from './Cnews'
   import TextCNN from './TextCNN'
   export default {
-    props:{
-      selete:String
-    },
     components:{
       'cnews':Cnews,
       'textCNN':TextCNN
