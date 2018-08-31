@@ -56,7 +56,7 @@
     height: 800px;
     overflow: hidden;
     border-radius: 15px;
-    border: rgba(0, 0, 0, 0.21) solid 1px;
+    border: #dcdfe6 solid 1px;
     font-size: 18px;
     margin-top: 200px;
   }
