@@ -17,37 +17,11 @@
             <el-button type="primary" @click="onSubmit">提交</el-button>
           </el-form-item>
         </div>
-
-        <div class="space">
-          <div class="inputcontent">
-            <div class="contentkid">
-                <h3>内容检测：</h3>
-                <el-form-item >
-                  检测力度:
-                  <el-select v-model="propertest_form.selete" placeholder="" style="width: 300px;padding-left: 0px">
-                    <el-option label="分句" value="分句"></el-option>
-                    <el-option label="文档" value="文档"></el-option>
-                  </el-select>
-                </el-form-item>
-                <el-form-item prop="type">
-                  检测模型:
-                  <el-checkbox-group v-model="propertest_form.moudle">
-                    <el-checkbox label="SVM分类" name="type"></el-checkbox>
-                    <el-checkbox label="CNN分类" name="type"></el-checkbox>
-                    <el-checkbox label="RNN分类" name="type"></el-checkbox><br>
-                    <el-checkbox label="NB分类" name="type"></el-checkbox>
-                    <el-checkbox label="MAX Entropy分类" name="type"></el-checkbox>
-                  </el-checkbox-group>
-                </el-form-item>
-            </div>
-          </div>
-        </div>
-
       </el-form>
     </div>
 
     <div>
-      <proper-result :selete="propertest_form.selete"></proper-result>
+      <proper-result ></proper-result>
     </div>
 
   </div>
@@ -66,8 +40,6 @@
         labelPosition:'top',
         propertest_form: {
           content: '',
-          selete:'',
-          moudle: []
         }
       }
     },
@@ -83,13 +55,5 @@
 </script>
 
 <style>
-  .input{
-    margin-right: auto;
-    margin-left: auto;
-    width: 80%;
-  }
-  .inputcontent{
-    width: 100%;height: 400px;border: black solid 1px; border-radius: 15px;margin-top: 200px;
-  }
 </style>
 

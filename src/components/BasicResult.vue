@@ -2,7 +2,7 @@
   <div>
     <div  class="space">
       <div class="content">
-        <div class="contentkid">
+        <div class="contentchild">
           <h3>文档分类结果：</h3>
           <div id="myChart" class="chart"></div>
           <div class="table">
@@ -101,7 +101,7 @@
    border: black solid 1px;
    font-size: 18px;
   }
- .contentkid{
+ .contentchild{
    margin-right: auto;
    margin-left: auto;
    width: 95%;
