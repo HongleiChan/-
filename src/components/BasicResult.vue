@@ -97,7 +97,7 @@
    height: 400px;
    overflow: hidden;
    border-radius: 15px;
-   border: black solid 1px;
+   border: rgba(0, 0, 0, 0.21) solid 1px;
    font-size: 18px;
   }
  .contentchild{

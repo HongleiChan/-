@@ -36,6 +36,6 @@ export default {
    height: 270px;
    overflow: scroll;
    overflow-x: hidden;
-   border:1px solid black;
+   border:1px solid rgba(0, 0, 0, 0.21);
  }
 </style>
