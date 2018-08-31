@@ -35,7 +35,6 @@
       'cnews':Cnews,
       'textCNN':TextCNN
     },
-    name: 'hello',
     data () {
       return {
         activeName: 'first',
