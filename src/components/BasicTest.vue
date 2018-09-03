@@ -73,7 +73,7 @@
           "content": this.basictest_form.content,
           "moduler": this.basictest_form.moudle
         };
-        this.$axios.post(url,params,{timeout: 1000 * 60 * 2}).then((res)=>{
+        this.$axios.post(url,params).then((res)=>{
           console.log(res);
           this.Basic_result = res.data.data;
         })

@@ -6,20 +6,32 @@
           <h3>文档分类结果：</h3>
           <div id="myChart" class="chart"></div>
           <div class="table">
-            <el-table
-              :data="tableData"
-              border>
-              <el-table-column
-                prop="type"
-                label="模型"
-                width="180">
-              </el-table-column>
-              <el-table-column
-                prop="weight"
-                label="结果"
-                width="180">
-              </el-table-column>
-            </el-table>
+            <table border="1px" style="width: 100%">
+              <tr>
+                <th style="width: 50%">模型</th>
+                <th style="width: 50%">结果</th>
+              </tr>
+              <tr>
+                <td>SVM分类</td>
+                <td>{{this.Basic_result.svm}}</td>
+              </tr>
+              <tr>
+                <td>CNN分类</td>
+                <td>{{this.Basic_result.cnn}}</td>
+              </tr>
+              <tr>
+                <td>RNN分类</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>NB分类</td>
+                <td>{{this.Basic_result.nb}}</td>
+              </tr>
+              <tr>
+                <td>MAX Entropy分类</td>
+                <td>{{this.Basic_result.maxEnt}}</td>
+              </tr>
+            </table>
           </div>
         </div>
         </div>
@@ -52,10 +64,10 @@
           weight: this.Basic_result.svm,
         }, {
           type:'CNN分类',
-          weight: this.Basic_result.textCNN,
+          weight: this.Basic_result.cnn,
         }, {
           type:'RNN分类',
-          weight: this.Basic_result.textLSTM,
+          weight: '',
         }, {
           type:'NB分类',
           weight: this.Basic_result.nb,
@@ -125,6 +137,16 @@
     float: left;
   }
   .table{
-    width: 40%;height: 250px;float: right
+    width: 40%;height: 250px;float: right;
+  }
+  table{
+    height: 250px;
+    font-size: 16px;
+    min-height: 25px;
+    line-height: 25px;
+    text-align: left;
+    border-color: #dcdfe6;
+    border-collapse: collapse;
+    border-width: 0px 0 0 0px;
   }
 </style>
