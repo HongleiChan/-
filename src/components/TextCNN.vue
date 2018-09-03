@@ -13,7 +13,7 @@
         <el-button type="primary" size="small">点击获取</el-button>
       </div>
 
-      <div class="res" style="float: left;">111111111111</div>
+      <div class="res" style="float: left;"></div>
       <div class="res" style="float: right"></div>
 
     </div>

@@ -19,11 +19,11 @@
         <el-form-item prop="type">
           模型选择:
           <el-checkbox-group v-model="basictest_form.moudle">
-            <el-checkbox label="SVM分类" name="type"></el-checkbox>
-            <el-checkbox label="CNN分类" name="type"></el-checkbox>
-            <el-checkbox label="RNN分类" name="type"></el-checkbox><br>
-            <el-checkbox label="NB分类" name="type"></el-checkbox>
-            <el-checkbox label="MAX Entropy分类" name="type"></el-checkbox>
+            <el-checkbox label="svm" name="type" >SVM分类</el-checkbox>
+            <el-checkbox label="textCNN" name="type">CNN分类</el-checkbox>
+            <el-checkbox label="textLSTM" name="type">RNN分类</el-checkbox><br>
+            <el-checkbox label="nb" name="type">NB分类</el-checkbox>
+            <el-checkbox label="maxEnt" name="maxEnt">MAX Entropy分类</el-checkbox>
           </el-checkbox-group>
         </el-form-item>
         <el-form-item>
@@ -33,7 +33,7 @@
     </div>
 
     <div>
-      <basic-result></basic-result>
+      <basic-result :Basic_result = this.Basic_result></basic-result>
     </div>
 
   </div>
@@ -53,14 +53,29 @@
           content: '',
           name:'',
           moudle: []
+        },
+        Basic_result:{
         }
       }
     },
     methods: {
       onSubmit() {
-        console.log('submit!');
-        console.log(this.propertest_form);
-        scroll(0,1000);
+        this.$axios.interceptors.request.use((config)=>{
+          return config;
+        });
+        this.$axios.interceptors.response.use((res)=>{
+          return res;
+        });
+        const url = "http://118.118.118.28:9046/model/classifier/choice/accessToken";
+        var params = {
+          "taskId": "ApiDocTest",
+          "content": this.basictest_form.content,
+          "moduler": this.basictest_form.moudle
+        };
+        this.$axios.post(url,params,{timeout: 1000 * 60 * 2}).then((res)=>{
+          console.log(res);
+          this.Basic_result = res.data.data;
+        })
       }
     }
   }

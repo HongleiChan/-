@@ -24,6 +24,9 @@
         </div>
         </div>
       </div>
+    <div>
+      <button @click="we">ni</button>
+    </div>
   </div>
 </template>
 
@@ -31,6 +34,9 @@
   import Cnews from './Cnews'
   import TextCNN from './TextCNN'
   export default {
+    props:{
+      Basic_result : Object,
+    },
     components:{
       'cnews':Cnews,
       'textCNN':TextCNN
@@ -43,19 +49,19 @@
         radio:'',
         tableData: [{
           type:'SVM分类',
-          weight:'0'
+          weight: this.Basic_result.svm,
         }, {
           type:'CNN分类',
-          weight:'0'
+          weight: this.Basic_result.textCNN,
         }, {
           type:'RNN分类',
-          weight:'0'
+          weight: this.Basic_result.textLSTM,
         }, {
           type:'NB分类',
-          weight:'0'
+          weight: this.Basic_result.nb,
         }, {
           type:'MAX Entropy分类',
-          weight:'0'
+          weight: this.Basic_result.maxEnt,
         }],
       }
     },
@@ -79,9 +85,13 @@
             data: [0.73352, 0.16103, 0.02762, 0.02484, 0.01567, 0.01498, 0.01413, 0.00562, 0.00219, 0.0004]
           }]
         });
+
       },
       handleClick(tab, event) {
         console.log(tab, event);
+      },
+      we(){
+        console.log(this.Basic_result);
       }
     },
     computed:{
