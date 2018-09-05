@@ -31,11 +31,12 @@
 <script>
 export default {
   props:{
-    select:String
+    select:String,
+    taxonomy_array : Array,
+    content : String
   },
   data(){
     return{
-      content:'高亮显示',
       radio:'',
       tableData: [{
         type:'SVM分类',
@@ -77,12 +78,21 @@ export default {
   },
   computed:{
     chek1(){
-      if(this.select == '分句')
+      if(this.select == 'sentence')
         return true
     },
     chek2(){
-      if(this.select == '文档')
+      if(this.select == 'content')
         return true
+    }
+  },
+  watch:{
+    taxonomy_array(val){
+      console.log(val);
+      this.taxonomy_array = val;
+    },
+    content(val){
+      this.content = val;
     }
   }
 }

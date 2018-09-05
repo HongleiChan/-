@@ -16,29 +16,40 @@
         </div>
         <div  class="space">
           <div class="testing">
-            <div class="testingchild" style="height: 40%">
+            <div class="testingchild" style="height: 45%">
               <h3>内容检测：</h3>
                 <el-form-item >
                   检测粒度:
                   <el-select v-model="propertest_form.select" placeholder="" style="width: 300px;padding-left: 0px">
-                    <el-option label="分句" value="分句"></el-option>
-                    <el-option label="文档" value="文档"></el-option>
+                    <el-option label="分句" value="sentence"></el-option>
+                    <el-option label="文档" value="content"></el-option>
                   </el-select>
                 </el-form-item>
+              <el-form-item >
+                检测种类:
+                <el-select v-model="propertest_form.variety" placeholder="" style="width: 300px;padding-left: 0px">
+                  <el-option label="涉黄" value="porn"></el-option>
+                  <el-option label="涉赌" value="gamble"></el-option>
+                </el-select>
+              </el-form-item>
                 <el-form-item prop="type">
                   检测模型:
                   <el-checkbox-group v-model="propertest_form.moudle">
-                    <el-checkbox label="SVM分类" name="type"></el-checkbox>
-                    <el-checkbox label="RNN分类" name="type"></el-checkbox><br>
-                    <el-checkbox label="NB分类" name="type"></el-checkbox>
-                    <el-checkbox label="MAX Entropy分类" name="type"></el-checkbox>
+                    <el-checkbox label="svm" name="type">SVM分类</el-checkbox>
+                    <el-checkbox label="textLSTM" name="type">RNN分类</el-checkbox><br>
+                    <el-checkbox label="nb" name="type">NB分类</el-checkbox>
+                    <el-checkbox label="maxEnt" name="type">MAX Entropy分类</el-checkbox>
                   </el-checkbox-group>
                 </el-form-item>
                 <el-form-item>
                   <el-button type="primary" @click="onSubmit">提交</el-button>
                 </el-form-item>
             </div>
-            <detection-result :select="propertest_form.select" ></detection-result>
+            <detection-result
+              :select="propertest_form.select"
+              :taxonomy_array=this.taxonomy_array
+              :content="propertest_form.content">
+            </detection-result>
           </div>
         </div>
       </el-form>
@@ -65,15 +76,60 @@
         propertest_form: {
           content: '',
           select: '',
-          moudle:[]
-        }
+          moudle:[],
+          variety:''
+        },
+        taxonomy_array:[]
       }
     },
     methods: {
       onSubmit() {
-        console.log('submit!');
-        //location.reload();
-        console.log(this.propertest_form)
+        // console.log('submit!');
+        // //location.reload();
+        // /console.log(this.propertest_form);
+        this.$axios.interceptors.response.use(undefined, function axiosRetryInterceptor(err) {
+          var config = err.config;
+          // If config does not exist or the retry option is not set, reject
+          if(!config || !config.retry) return Promise.reject(err);
+
+          // Set the variable for keeping track of the retry count
+          config.__retryCount = config.__retryCount || 0;
+
+          // Check if we've maxed out the total number of retries
+          if(config.__retryCount >= config.retry) {
+            // Reject with the error
+            return Promise.reject(err);
+          }
+
+          // Increase the retry count
+          config.__retryCount += 1;
+
+          // Create new promise to handle exponential backoff
+          var backoff = new Promise(function(resolve) {
+            setTimeout(function() {
+              resolve();
+            }, config.retryDelay || 1);
+          });
+
+          // Return the promise in which recalls axios to retry the request
+          return backoff.then(function() {
+            return axios(config);
+          });
+        });
+
+        const url = "http://118.118.118.28:9046/model/classifier/proper/porn_gamble/accessToken";
+        var params = {
+          "taskId": "",
+          "title": "",
+          "content": this.propertest_form.content,
+          "variety": this.propertest_form.variety,
+          "models": this.propertest_form.moudle,
+          "tag": this.propertest_form.select
+        };
+        this.$axios.post(url,params).then((res)=>{
+          this.taxonomy_array = res.data.data;
+          //console.log(this.taxonomy_array)
+        });
       }
     }
   }
