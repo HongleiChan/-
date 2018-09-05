@@ -62,19 +62,50 @@
     methods: {
       onSubmit() {
         //选择模型分类结果
-        this.$axios.interceptors.request.use((config)=>{
-          return config;
+        if(this.basictest_form.content == ''){
+          alert('文档输入为空，请重试')
+          return;
+        }else if(this.basictest_form.name == ''){
+          alert('任务名称不能为空，请重试')
+          return;
+        }
+        this.$axios.interceptors.response.use(undefined, function axiosRetryInterceptor(err) {
+          var config = err.config;
+          // If config does not exist or the retry option is not set, reject
+          if (!config || !config.retry) return Promise.reject(err);
+
+          // Set the variable for keeping track of the retry count
+          config.__retryCount = config.__retryCount || 0;
+
+          // Check if we've maxed out the total number of retries
+          if (config.__retryCount >= config.retry) {
+            // Reject with the error
+            return Promise.reject(err);
+          }
+
+          // Increase the retry count
+          config.__retryCount += 1;
+
+          // Create new promise to handle exponential backoff
+          var backoff = new Promise(function (resolve) {
+            setTimeout(function () {
+              resolve();
+            }, config.retryDelay || 1);
+          });
+
+          // Return the promise in which recalls axios to retry the request
+          return backoff.then(function () {
+            return axios(config);
+          });
         });
-        this.$axios.interceptors.response.use((res)=>{
-          return res;
-        });
+
         const url = "http://118.118.118.28:9046/model/classifier/choice/accessToken";
         var data = {
           "taskId": this.basictest_form.name,
           "content": this.basictest_form.content,
           "moduler": this.basictest_form.moudle
         };
-        var q1 =this.$axios.post(url,data,).then((res)=>{
+        var q1 =this.$axios.post(url,data).then((res)=>{
           this.Basic_result = res.data.data;
           //console.log(res);
         });

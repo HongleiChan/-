@@ -18,6 +18,9 @@ require('echarts/lib/chart/bar');
 // 引入提示框和标题组件
 require('echarts/lib/component/tooltip');
 
+axios.defaults.retry = 4;
+axios.defaults.retryDelay = 1000;
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

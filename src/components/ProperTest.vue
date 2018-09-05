@@ -38,15 +38,13 @@
                   <el-button type="primary" @click="onSubmit">提交</el-button>
                 </el-form-item>
             </div>
-            <detection-result :select="propertest_form.select"></detection-result>
+            <detection-result :select="propertest_form.select" ></detection-result>
           </div>
-
         </div>
       </el-form>
     </div>
-
     <div>
-      <proper-result ></proper-result>
+      <proper-result :proper_content="propertest_form.content"></proper-result>
     </div>
 
   </div>

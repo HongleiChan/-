@@ -40,7 +40,48 @@
     },
     methods: {
       onSubmit() {
-        console.log('submit!');
+        if(this.trian_form.region == ''){
+          alert('模型选择不能为空');
+          return;
+        }else if(this.trian_form.name == ''){
+          alert('模型任务名称不能为空');
+          return;
+        }else if(this.trian_form.location == ''){
+          alert('训练模型地址不能为空');
+          return;
+        }
+
+        if(this.trian_form.region == 'MAX Entropy分类'){
+          const url = "http://118.118.118.28:9046/model/classifier/maxent/accessToken";
+          var params = {
+            "taskId": this.trian_form.name,
+            "trainDataPath": this.trian_form.location
+          };
+          this.$axios.post(url,params).then((res)=>{
+            console.log(res)
+          });
+          return;
+        }else if(this.trian_form.region == 'NB分类'){
+          const url = "http://118.118.118.28:9046/model/classifier/nb/accessToken";
+          var params = {
+            "taskId": this.trian_form.name,
+            "trainDataPath": this.trian_form.location
+          };
+          this.$axios.post(url,params).then((res)=>{
+            console.log(res)
+          });
+          return;
+        }else if(this.trian_form.region == 'SVM分类'){
+          const url = "http://118.118.118.28:9046/model/classifier/svm/accessToken";
+          var params = {
+            "taskId": this.trian_form.name,
+            "trainDataPath": this.trian_form.location
+          };
+          this.$axios.post(url,params).then((res)=>{
+            console.log(res)
+          });
+          return;
+        }
       }
     }
   }
