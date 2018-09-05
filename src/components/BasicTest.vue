@@ -32,14 +32,14 @@
       </el-form>
     </div>
 
-    <div>
-      <basic-result :Basic_result = this.Basic_result></basic-result>
+    <div id="BasicResult">
+      <basic-result :Basic_result=this.Basic_result ref="basicresult" ></basic-result>
     </div>
 
   </div>
 </template>
 
-<script>
+<script type="text/javascript">
   import BasicResult from './BasicResult'
   export default {
     components:{
@@ -55,12 +55,13 @@
           moudle: []
         },
         Basic_result:{
-
-        }
+        },
+        Basic_text:{}
       }
     },
     methods: {
       onSubmit() {
+        //选择模型分类结果
         this.$axios.interceptors.request.use((config)=>{
           return config;
         });
@@ -68,15 +69,27 @@
           return res;
         });
         const url = "http://118.118.118.28:9046/model/classifier/choice/accessToken";
-        var params = {
-          "taskId": "ApiDocTest",
+        var data = {
+          "taskId": this.basictest_form.name,
           "content": this.basictest_form.content,
           "moduler": this.basictest_form.moudle
         };
-        this.$axios.post(url,params).then((res)=>{
-          console.log(res);
+        var q1 =this.$axios.post(url,data,).then((res)=>{
           this.Basic_result = res.data.data;
-        })
+          //console.log(res);
+        });
+
+        // const url1 = "http://118.118.118.28:9046/model/classifier/proper/increase_textcnn/accessToken";
+        // var data1 = {
+        //   "taskId": this.basictest_form.name,
+        //   "title": "",
+        //   "content": this.basictest_form.content
+        // };
+        // var q2 = this.$axios.post(url1,data1).then((res)=>{
+        //   this.Basic_text = res.data.data;
+        //  // console.log(this.Basic_text);
+        //   //console.log(res.data.data)
+        // });
       }
     }
   }

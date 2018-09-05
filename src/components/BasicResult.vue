@@ -36,9 +36,6 @@
         </div>
         </div>
       </div>
-    <div>
-      <button @click="we">ni</button>
-    </div>
   </div>
 </template>
 
@@ -47,7 +44,7 @@
   import TextCNN from './TextCNN'
   export default {
     props:{
-      Basic_result : Object,
+      Basic_result: {type:Object,required: true},
     },
     components:{
       'cnews':Cnews,
@@ -55,26 +52,9 @@
     },
     data () {
       return {
-        activeName: 'first',
-        content:'高亮显示',
-        msg: 'xxxx',
-        radio:'',
-        tableData: [{
-          type:'SVM分类',
-          weight: this.Basic_result.svm,
-        }, {
-          type:'CNN分类',
-          weight: this.Basic_result.cnn,
-        }, {
-          type:'RNN分类',
-          weight: '',
-        }, {
-          type:'NB分类',
-          weight: this.Basic_result.nb,
-        }, {
-          type:'MAX Entropy分类',
-          weight: this.Basic_result.maxEnt,
-        }],
+        chartdata:[],
+        chartdatax:[],
+        basic_result:this.Basic_result
       }
     },
     mounted(){
@@ -82,31 +62,107 @@
     },
     methods: {
       drawLine(){
-        // 基于准备好的dom，初始化echarts实例
+        this.$axios.interceptors.request.use((config)=>{
+          this.Content = this.content;
+          return config;
+        });
+        this.$axios.interceptors.response.use((res)=>{
+          return res;
+        });
+        //console.log(this.Basic_text);
+        // 基于准备好的dom，初始化echarts实例\
+        let temp = this.basic_result;
+        //console.log(this.basic_result);
+        for(let item in temp){
+          this.chartdatax.push(item);
+          this.chartdata.push(temp[item]);
+        }
+
+        //console.log(this.chartdata);
+        let temp1 = this.chartdata;
+        for(let item1 in temp1){
+          switch (temp1[item1]) {
+            case '时政' : this.chartdata[item1] = 1; break;
+            case '房产' : this.chartdata[item1] = 2; break;
+            case '科技' : this.chartdata[item1] = 3; break;
+            case '教育' : this.chartdata[item1] = 4; break;
+            case '游戏' : this.chartdata[item1] = 5; break;
+            case '家居' : this.chartdata[item1] = 6; break;
+            case '财经' : this.chartdata[item1] = 7; break;
+            case '娱乐' : this.chartdata[item1] = 8; break;
+            case '时尚' : this.chartdata[item1] = 9; break;
+            case '体育' : this.chartdata[item1] = 10; break;
+          }
+        }
         let myChart = this.$echarts.init(document.getElementById('myChart'));
-        // 绘制图表
+        myChart.showLoading();
         myChart.setOption({
-          tooltip: {},
-          xAxis: {
-            data: ["时政","房产","科技","教育","游戏","家居","财经","娱乐","时尚","体育"]
+          title:{
           },
-          yAxis: {},
+          tooltip: {
+
+          },
+          xAxis: {
+            axisLabel:{
+              formatter: function (value) {
+                var texts = [];
+                if(value == 1){
+                  texts.push('时政');
+                }
+                else if (value == 2) {
+                  texts.push('房产');
+                }
+                else if (value == 3) {
+                  texts.push('科技');
+                }
+                else if(value == 4){
+                  texts.push('教育');
+                }
+                else if(value == 5){
+                  texts.push('游戏');
+                }
+                else if(value == 6){
+                  texts.push('家居');
+                }
+                else if(value == 7){
+                  texts.push('财经');
+                }
+                else if(value == 8){
+                  texts.push('娱乐');
+                }
+                else if(value == 9){
+                  texts.push('时尚');
+                }
+                else if(value == 10){
+                  texts.push('体育');
+                }
+                return texts;
+
+              }
+            }
+          },
+          yAxis: {
+            data: this.chartdatax
+          },
           series: [{
-            name: '权重:',
+            name: '分类结果:',
             type: 'bar',
-            data: [0.73352, 0.16103, 0.02762, 0.02484, 0.01567, 0.01498, 0.01413, 0.00562, 0.00219, 0.0004]
+            data:  this.chartdata,
           }]
         });
-
+        myChart.hideLoading();
+        this.chartdata = [];
+        this.chartdatax = [];
       },
-      handleClick(tab, event) {
-        console.log(tab, event);
-      },
-      we(){
-        console.log(this.Basic_result);
-      }
     },
     computed:{
+    },
+    watch: {
+      Basic_result(val){
+        //console.log(val);
+        this.basic_result = val;
+        this.drawLine();
+      },
     }
   }
 </script>

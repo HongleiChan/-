@@ -10,7 +10,7 @@
         <div align="center">
           <el-form-item>
             <p>文档输入:</p>
-            <el-input  type="textarea" :rows="9" placeholder="请输入内容" v-model="propertest_form.content" style="width: 80%"
+            <el-input  type="textarea" :rows="9" placeholder="请输入内容" v-model="propertest_form.content" style="width: 60%"
             ></el-input>
           </el-form-item>
         </div>
@@ -19,7 +19,7 @@
             <div class="testingchild" style="height: 40%">
               <h3>内容检测：</h3>
                 <el-form-item >
-                  检测力度:
+                  检测粒度:
                   <el-select v-model="propertest_form.select" placeholder="" style="width: 300px;padding-left: 0px">
                     <el-option label="分句" value="分句"></el-option>
                     <el-option label="文档" value="文档"></el-option>
@@ -29,7 +29,6 @@
                   检测模型:
                   <el-checkbox-group v-model="propertest_form.moudle">
                     <el-checkbox label="SVM分类" name="type"></el-checkbox>
-                    <el-checkbox label="CNN分类" name="type"></el-checkbox>
                     <el-checkbox label="RNN分类" name="type"></el-checkbox><br>
                     <el-checkbox label="NB分类" name="type"></el-checkbox>
                     <el-checkbox label="MAX Entropy分类" name="type"></el-checkbox>
@@ -75,7 +74,6 @@
     methods: {
       onSubmit() {
         console.log('submit!');
-        scroll(0,700);
         //location.reload();
         console.log(this.propertest_form)
       }

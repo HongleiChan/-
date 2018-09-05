@@ -3,20 +3,50 @@
 
     <div>
       <div>
-        <el-table
-          :data="tableData"
-          border>
-          <el-table-column
-            prop="type"
-            label="模型"
-            width="180">
-          </el-table-column>
-          <el-table-column
-            prop="weight"
-            label="结果"
-            width="180">
-          </el-table-column>
-        </el-table>
+        <table border="1px" style="width: 40%;float: left" class="table">
+          <tr>
+            <th style="width: 50%">模型</th>
+            <th style="width: 50%">结果</th>
+          </tr>
+          <tr>
+            <td>SVM分类</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>CNN分类</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>RNN分类</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>NB分类</td>
+            <td></td>
+          </tr>
+        </table>
+        <table border="1px" style="width: 40%; float: right" class="table">
+          <tr>
+            <th style="width: 50%">模型</th>
+            <th style="width: 50%">结果</th>
+          </tr>
+          <tr>
+            <td>SVM分类</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>CNN分类</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>RNN分类</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>NB分类</td>
+            <td></td>
+          </tr>
+        </table>
       </div>
     </div>
 
@@ -28,25 +58,7 @@
     name: 'hello',
     data () {
       return {
-        msg: 'xxxx',
-        radio:'1',
 
-        tableData: [{
-          type:'SVM分类',
-          weight:'0'
-        }, {
-          type:'CNN分类',
-          weight:'0'
-        }, {
-          type:'RNN分类',
-          weight:'0'
-        }, {
-          type:'NB分类',
-          weight:'0'
-        }, {
-          type:'MAX Entropy分类',
-          weight:'0'
-        }],
       }
     }
   }
