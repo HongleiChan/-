@@ -3,7 +3,7 @@
       <div>
         <table border="1px" style="width: 40%;float: left" class="table">
           <tr>
-            <th style="width: 50%">模型</th>
+            <th style="width: 50%">类别</th>
             <th style="width: 50%">结果</th>
           </tr>
           <tr>
@@ -29,7 +29,7 @@
         </table>
         <table border="1px" style="width: 40%; float: right" class="table">
           <tr>
-            <th style="width: 50%">模型</th>
+            <th style="width: 50%">类别</th>
             <th style="width: 50%">结果</th>
           </tr>
           <tr>
