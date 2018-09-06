@@ -62,13 +62,6 @@
     },
     methods: {
       drawLine(){
-        this.$axios.interceptors.request.use((config)=>{
-          this.Content = this.content;
-          return config;
-        });
-        this.$axios.interceptors.response.use((res)=>{
-          return res;
-        });
         //console.log(this.Basic_text);
         // 基于准备好的dom，初始化echarts实例\
         let temp = this.basic_result;
@@ -204,5 +197,6 @@
     border-color: #dcdfe6;
     border-collapse: collapse;
     border-width: 0px 0 0 0px;
+
   }
 </style>

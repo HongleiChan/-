@@ -36,7 +36,8 @@
                   检测模型:
                   <el-checkbox-group v-model="propertest_form.moudle">
                     <el-checkbox label="svm" name="type">SVM分类</el-checkbox>
-                    <el-checkbox label="textLSTM" name="type">RNN分类</el-checkbox><br>
+                    <el-checkbox label="textLSTM" name="type">RNN分类</el-checkbox>
+                    <el-checkbox label="vocab" name="type">vocab词表</el-checkbox><br>
                     <el-checkbox label="nb" name="type">NB分类</el-checkbox>
                     <el-checkbox label="maxEnt" name="type">MAX Entropy分类</el-checkbox>
                   </el-checkbox-group>
@@ -65,20 +66,32 @@
                   <div id="meChart" class="chart"></div>
                 </div>
                 <div class="table">
-                  <el-table
-                    :data="tableData"
-                    border>
-                    <el-table-column
-                      prop="type"
-                      label="模型"
-                      width="180">
-                    </el-table-column>
-                    <el-table-column
-                      prop="weight"
-                      label="结果"
-                      width="180">
-                    </el-table-column>
-                  </el-table>
+                  <table border="1px" style="width: 100%">
+                    <tr>
+                      <th style="width: 50%">模型</th>
+                      <th style="width: 50%">结果</th>
+                    </tr>
+                    <tr>
+                      <td>SVM分类</td>
+                      <td>{{this.proper_result.svm}}</td>
+                    </tr>
+                    <tr>
+                      <td>CNN分类</td>
+                      <td>{{this.proper_result.cnn}}</td>
+                    </tr>
+                    <tr>
+                      <td>RNN分类</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>NB分类</td>
+                      <td>{{this.proper_result.nb}}</td>
+                    </tr>
+                    <tr>
+                      <td>MAX Entropy分类</td>
+                      <td>{{this.proper_result.maxEnt}}</td>
+                    </tr>
+                  </table>
                 </div>
               </div>
             </div>
@@ -111,23 +124,10 @@
           variety:''
         },
         taxonomy_array:[],
-        tableData: [{
-          type:'SVM分类',
-          weight:'0'
-        }, {
-          type:'CNN分类',
-          weight:'0'
-        }, {
-          type:'RNN分类',
-          weight:'0'
-        }, {
-          type:'NB分类',
-          weight:'0'
-        }, {
-          type:'MAX Entropy分类',
-          weight:'0'
-        }],
-        taxonomy_text:''
+        taxonomy_text:'',
+        proper_result:{},
+        properchartdata:[],
+        properchartdatax:[]
       }
     },
     mounted(){
@@ -135,25 +135,110 @@
     },
     methods: {
       drawLine(){
+        let temp = this.proper_result;
+        //console.log(this.basic_result);
+        for(let item in temp){
+          this.properchartdatax.push(item);
+          this.properchartdata.push(temp[item]);
+        }
+
+        //console.log(this.chartdata);
+        let temp1 = this.properchartdata;
+        for(let item1 in temp1){
+          switch (temp1[item1]) {
+            case '时政' : this.properchartdata[item1] = 1; break;
+            case '房产' : this.properchartdata[item1] = 2; break;
+            case '科技' : this.properchartdata[item1] = 3; break;
+            case '教育' : this.properchartdata[item1] = 4; break;
+            case '游戏' : this.properchartdata[item1] = 5; break;
+            case '家居' : this.properchartdata[item1] = 6; break;
+            case '财经' : this.properchartdata[item1] = 7; break;
+            case '娱乐' : this.properchartdata[item1] = 8; break;
+            case '时尚' : this.properchartdata[item1] = 9; break;
+            case '体育' : this.properchartdata[item1] = 10; break;
+          }
+        }
         let meChart = this.$echarts.init(document.getElementById('meChart'));
+        meChart.showLoading();
         meChart.setOption({
-          tooltip: {},
-          xAxis: {
-            data: ["时政","房产","科技","教育","游戏","家居","财经","娱乐","时尚","体育"]
+          title:{
           },
-          yAxis: {},
+          tooltip: {
+
+          },
+          xAxis: {
+            axisLabel:{
+              formatter: function (value) {
+                var texts = [];
+                if(value == 1){
+                  texts.push('时政');
+                }
+                else if (value == 2) {
+                  texts.push('房产');
+                }
+                else if (value == 3) {
+                  texts.push('科技');
+                }
+                else if(value == 4){
+                  texts.push('教育');
+                }
+                else if(value == 5){
+                  texts.push('游戏');
+                }
+                else if(value == 6){
+                  texts.push('家居');
+                }
+                else if(value == 7){
+                  texts.push('财经');
+                }
+                else if(value == 8){
+                  texts.push('娱乐');
+                }
+                else if(value == 9){
+                  texts.push('时尚');
+                }
+                else if(value == 10){
+                  texts.push('体育');
+                }
+                return texts;
+
+              }
+            }
+          },
+          yAxis: {
+            data: this.properchartdatax
+          },
           series: [{
-            name: '权重:',
+            name: '分类结果:',
             type: 'bar',
-            data: [0.73352, 0.16103, 0.02762, 0.02484, 0.01567, 0.01498, 0.01413, 0.00562, 0.00219, 0.0004]
+            data:  this.properchartdata,
           }]
         });
+        meChart.hideLoading();
+        this.properchartdata = [];
+        this.properchartdatax = [];
       },
 
       onSubmit() {
+        if(this.propertest_form.content == ''){
+          alert('文档输入为空，请重试')
+          return;
+        }else if(this.propertest_form.select == ''){
+          alert('检测粒度不能为空，请重试')
+          return;
+        }
+        else if(this.propertest_form.variety == ''){
+          alert('检测种类不能为空，请重试')
+          return;
+        }
+        else if(this.propertest_form.moudle == ''){
+          alert('检测模型不能为空，请重试')
+          return;
+        }
         // console.log('submit!');
         // //location.reload();
         // /console.log(this.propertest_form);
+
         this.$axios.interceptors.response.use(undefined, function axiosRetryInterceptor(err) {
           var config = err.config;
           // If config does not exist or the retry option is not set, reject
@@ -184,20 +269,36 @@
           });
         });
 
-        const url = "http://118.118.118.28:9046/model/classifier/proper/porn_gamble/accessToken";
-        var params = {
-          "taskId": "",
-          "title": "",
-          "content": this.propertest_form.content,
-          "variety": this.propertest_form.variety,
-          "models": this.propertest_form.moudle,
-          "tag": this.propertest_form.select
-        };
-        this.$axios.post(url,params).then((res)=>{
-          this.taxonomy_array = res.data.data;
-          //console.log(this.taxonomy_array);
-          this.taxonomy();
-        });
+        if(this.propertest_form.select == 'sentence'){
+          const url = "http://118.118.118.28:9046/model/classifier/proper/porn_gamble/accessToken";
+          var params = {
+            "taskId": "",
+            "title": "",
+            "content": this.propertest_form.content,
+            "variety": this.propertest_form.variety,
+            "models": this.propertest_form.moudle,
+            "tag": this.propertest_form.select
+          };
+          this.$axios.post(url,params).then((res)=>{
+            this.taxonomy_array = res.data.data;
+            console.log(this.taxonomy_array);
+            this.taxonomy();
+          });
+        }
+        //文档
+        else if(this.propertest_form.select == 'content'){
+          const url = "http://118.118.118.28:9046/model/classifier/choice/accessToken";
+          var data = {
+            "taskId": '20180718',
+            "content": this.propertest_form.content,
+            "moduler": this.propertest_form.moudle
+          };
+          var q1 =this.$axios.post(url,data).then((res)=>{
+            this.proper_result = res.data.data;
+            this.drawLine();
+            //console.log(res);
+          });
+        }
       },
 
       taxonomy(){
