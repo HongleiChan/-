@@ -281,7 +281,7 @@
           };
           this.$axios.post(url,params).then((res)=>{
             this.taxonomy_array = res.data.data;
-            console.log(this.taxonomy_array);
+            //console.log(this.taxonomy_array);
             this.taxonomy();
           });
         }
@@ -319,7 +319,7 @@
             var taxonomycurrent = '';
             //待加标签
             var taxonomymain = this.taxonomy_text.substring(taxonomy_data[h].from,taxonomy_data[h].to);
-            console.log(taxonomymain);
+            //console.log(taxonomymain);
             if(taxonomy_data[h].score<0.3){
               taxonomycurrent = '<span style="color : #FFCC00;">' + taxonomymain + '</span>'
             }else if(taxonomy_data[h].score>=0.3 && taxonomy_data<=0.6){
