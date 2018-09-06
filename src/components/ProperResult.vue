@@ -5,9 +5,9 @@
         <div class="contentchild">
           <div style="width: 20%">
             <h3 style="float: left">Cnews二分类：</h3>
-            <el-button type="primary" @click="onCheck" style="float: right;margin-top: 15px">提交</el-button>
+            <el-button type="primary" @click="onCheck" style="margin-top: 20px" size="small">提交</el-button>
           </div>
-          <div style="padding-top: 20px; width: 80%">
+          <div style="margin-top: 50px; width: 80%">
             <cnews :proper_cnews = this.proper_cnews ></cnews>
           </div>
         </div>

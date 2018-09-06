@@ -50,7 +50,15 @@
               <h3>内容检测结果：</h3>
               <div v-show="chek1">
                 <div class="taxonomy_text" v-html="taxonomy_text"></div>
-                <div class="tips"></div>
+                <div class="tips">
+                  <h3 align="center">涉嫌指数</h3>
+                  <div class="colorbox" style="background-color:#FFCC00 "></div>
+                  <span style="margin-top: 50px;margin-left: 30px;font-size: 15px;color:#FFCC00">0-0.3&nbsp&nbsp&nbsp轻度涉嫌</span>
+                  <div class="colorbox" style="background-color:#FF9900 "></div>
+                  <span style="margin-top: 50px;margin-left: 30px;font-size: 15px;color:#FF9900">0.3-0.6&nbsp&nbsp&nbsp中度涉嫌</span>
+                  <div class="colorbox" style="background-color:#FF0000 "></div>
+                  <span style="margin-top: 50px;margin-left: 30px;font-size: 15px;color:#FF0000">0.6-1.0&nbsp&nbsp&nbsp重度涉嫌</span>
+                </div>
               </div>
               <div v-show="chek2">
                 <div>
@@ -243,6 +251,9 @@
   }
   .tips{
     width: 25%;height: 300px;border: #dcdfe6 solid 1px;float: right;border-radius: 15px;
+  }
+  .colorbox{
+    width: 15%;height: 5%;border: #dcdfe6 solid 1px;border-radius: 8px; margin-top: 30px;margin-left: 30px;
   }
 </style>
 

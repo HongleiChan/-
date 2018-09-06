@@ -1,7 +1,7 @@
 <template>
-  <div align="center" style="padding-top: 20px">
-      <div>
-        <table border="1px" style="width: 40%;float: left" class="table">
+  <div align="center" >
+      <div style="margin-top: 20px">
+        <table border="1px" style="width: 40%" class="table">
           <tr>
             <th style="width: 50%">类别</th>
             <th style="width: 50%">结果</th>
