@@ -15,10 +15,10 @@
       </div>
 
       <div class="res" style="float: left;">
-        <div id="textChart" style="height: 300px;width: 700px"></div>
+        <div id="textChart" style="height: 300px;width: 600px"></div>
       </div>
       <div class="res" style="float: right">
-        <div id="textChart1" style="height: 300px;width: 700px"></div>
+        <div id="textChart1" style="height: 300px;width: 600px"></div>
       </div>
     </div>
   </div>

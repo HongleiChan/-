@@ -188,7 +188,7 @@
     padding-top: 20px;padding-bottom: 30px
   }
   .chart{
-    width: 800px;
+    width: 700px;
     height: 300px;
     float: left;
   }

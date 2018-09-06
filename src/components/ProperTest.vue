@@ -45,11 +45,36 @@
                   <el-button type="primary" @click="onSubmit">提交</el-button>
                 </el-form-item>
             </div>
-            <detection-result
-              :select="propertest_form.select"
-              :taxonomy_array=this.taxonomy_array
-              :content="propertest_form.content">
-            </detection-result>
+
+            <div class="testingchild" style="height: 60%">
+              <h3>内容检测结果：</h3>
+              <div v-show="chek1">
+                <div class="taxonomy_text" v-html="taxonomy_text"></div>
+                <div class="tips"></div>
+              </div>
+              <div v-show="chek2">
+                <div>
+                  <div id="meChart" class="chart"></div>
+                </div>
+                <div class="table">
+                  <el-table
+                    :data="tableData"
+                    border>
+                    <el-table-column
+                      prop="type"
+                      label="模型"
+                      width="180">
+                    </el-table-column>
+                    <el-table-column
+                      prop="weight"
+                      label="结果"
+                      width="180">
+                    </el-table-column>
+                  </el-table>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </el-form>
@@ -63,11 +88,9 @@
 
 <script type="text/javascript">
   import ProperResult from './ProperResult'
-  import DetectionResult from './DetectionResult'
   export default {
     components:{
       'proper-result':ProperResult,
-      'detection-result':DetectionResult
     },
     data() {
       return {
@@ -79,10 +102,46 @@
           moudle:[],
           variety:''
         },
-        taxonomy_array:[]
+        taxonomy_array:[],
+        tableData: [{
+          type:'SVM分类',
+          weight:'0'
+        }, {
+          type:'CNN分类',
+          weight:'0'
+        }, {
+          type:'RNN分类',
+          weight:'0'
+        }, {
+          type:'NB分类',
+          weight:'0'
+        }, {
+          type:'MAX Entropy分类',
+          weight:'0'
+        }],
+        taxonomy_text:''
       }
     },
+    mounted(){
+      this.drawLine();
+    },
     methods: {
+      drawLine(){
+        let meChart = this.$echarts.init(document.getElementById('meChart'));
+        meChart.setOption({
+          tooltip: {},
+          xAxis: {
+            data: ["时政","房产","科技","教育","游戏","家居","财经","娱乐","时尚","体育"]
+          },
+          yAxis: {},
+          series: [{
+            name: '权重:',
+            type: 'bar',
+            data: [0.73352, 0.16103, 0.02762, 0.02484, 0.01567, 0.01498, 0.01413, 0.00562, 0.00219, 0.0004]
+          }]
+        });
+      },
+
       onSubmit() {
         // console.log('submit!');
         // //location.reload();
@@ -128,13 +187,62 @@
         };
         this.$axios.post(url,params).then((res)=>{
           this.taxonomy_array = res.data.data;
-          //console.log(this.taxonomy_array)
+          //console.log(this.taxonomy_array);
+          this.taxonomy();
         });
+      },
+
+      taxonomy(){
+        //console.log(this.taxonomy_array);
+        this.taxonomy_text = this.propertest_form.content;
+        if(this.taxonomy_array){
+          var taxonomy_data = this.taxonomy_array;
+          for(var n=0;n<this.taxonomy_array.length;n++){
+            taxonomy_data[n].from = Number(this.taxonomy_array[n].from);
+            taxonomy_data[n].score = Number(this.taxonomy_array[n].score);
+            taxonomy_data[n].to = Number(this.taxonomy_array[n].to);
+          }
+          taxonomy_data.sort();
+          //最终处理后的
+          var taxonosubcurent = '';
+          for (var h=taxonomy_data.length-1;h>=0;h--){
+            //已加标签
+            var taxonomycurrent = '';
+            //待加标签
+            var taxonomymain = this.taxonomy_text.substring(taxonomy_data[h].from,taxonomy_data[h].to);
+            console.log(taxonomymain);
+            if(taxonomy_data[h].score<0.3){
+              taxonomycurrent = '<span style="color : #FFCC00;">' + taxonomymain + '</span>'
+            }else if(taxonomy_data[h].score>=0.3 && taxonomy_data<=0.6){
+              taxonomycurrent = '<span style="color : #FF9900;">' + taxonomymain + '</span>'
+            }else if(taxonomy_data[h].score>0.6){
+              taxonomycurrent = '<span style="color : #FF0000;">' + taxonomymain + '</span>'
+            }
+            taxonosubcurent = taxonomycurrent + taxonosubcurent ;
+          }
+          this.taxonomy_text = taxonosubcurent
+        }
       }
-    }
+    },
+    computed:{
+      chek1(){
+        if(this.propertest_form.select == 'sentence')
+          return true
+      },
+      chek2(){
+        if(this.propertest_form.select == 'content')
+          return true
+      }
+    },
   }
 </script>
 
 <style>
+  .taxonomy_text{
+    width: 70%;height: 300px;border: #dcdfe6 solid 1px; overflow: scroll;overflow-x: hidden;float: left;
+  }
+  .tips{
+    width: 25%;height: 300px;border: #dcdfe6 solid 1px;float: right;border-radius: 15px;
+  }
 </style>
 
